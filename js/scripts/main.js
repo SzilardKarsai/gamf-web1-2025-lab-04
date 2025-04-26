@@ -20,9 +20,27 @@ const generateTable = (data = []) => {
     tr.appendChild(th);
 
     const tbody = document.createElement('tbody');
+    table.appendChild(tbody);
     data.forEach(row => {
-        
-    });
+        const tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        keys.forEach(key => {
+            const td = document.createElement('td');
+            tr.appendChild(td);
+            td.innerText = row[key];
+        });
+        const td = document.createElement('td');
+        tr.appendChild(td);
+
+        const btnGroup = document.createElement('div');
+        td.appendChild(btnGroup);
+        btnGroup.classList.add('btn-group');
+
+        const infoBtn = document.createElement('button');
+        btnGroup.appendChild(infoBtn);
+        infoBtn.classList.add('btn', 'btn-info');
+        infoBtn.innerText = 'info';
+    })
 };
 
 getAll().then( data => generateTable(data));
